@@ -31,4 +31,15 @@ public class batscript : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed* Time.deltaTime);
     }
-}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject); // Destroy the bat when it touches the player
+        }
+    }
+
+
+
+    }

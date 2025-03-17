@@ -9,15 +9,26 @@ public class Parrallax : MonoBehaviour
     private float length, startpos;
     public GameObject cam;
     public float parallaxEffect;
+    private SpriteRenderer spriteRenderer;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+    
 
-        
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+        {
+            startpos = transform.position.x;
+            length = spriteRenderer.bounds.size.x;
+        }
+        else
+        {
+            Debug.LogError("No SpriteRenderer found in children of " + gameObject.name);
+        }
+
     }
 
     // Update is called once per frame
@@ -29,7 +40,6 @@ public class Parrallax : MonoBehaviour
 
 
 
-        if (temp > startpos + length) startpos += length;
-        else if (temp < startpos - length) startpos -= length;
+       
     }
 }
